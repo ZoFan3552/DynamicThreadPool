@@ -38,6 +38,8 @@ public class DynamicThreadPoolService implements IDynamicThreadPoolService{
                     .queueType(threadPoolExecutor.getQueue().getClass().getSimpleName())
                     .queueSize(threadPoolExecutor.getQueue().size())
                     .remainingCapacity(threadPoolExecutor.getQueue().remainingCapacity())
+                    .appName(applicationName)
+                    .threadPoolName(threadPoolBeanName)
                     .build();
             threadPoolConfigEntityList.add(threadPoolConfigEntity);
         }
@@ -66,6 +68,8 @@ public class DynamicThreadPoolService implements IDynamicThreadPoolService{
                 .queueType(threadPoolExecutor.getQueue().getClass().getSimpleName())
                 .queueSize(threadPoolExecutor.getQueue().size())
                 .remainingCapacity(threadPoolExecutor.getQueue().remainingCapacity())
+                .appName(applicationName)
+                .threadPoolName(threadPoolName)
                 .build();
     }
 
