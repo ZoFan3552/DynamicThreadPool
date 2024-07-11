@@ -7,7 +7,6 @@ import org.redisson.api.RBucket;
 import org.redisson.api.RList;
 import org.redisson.api.RedissonClient;
 
-import javax.annotation.Resource;
 import java.time.Duration;
 import java.util.List;
 
