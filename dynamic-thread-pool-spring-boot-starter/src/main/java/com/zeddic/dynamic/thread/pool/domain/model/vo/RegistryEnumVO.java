@@ -15,11 +15,11 @@ public enum RegistryEnumVO {
     DYNAMIC_THREAD_POOL_REDIS_TOPIC("DYNAMIC_THREAD_POOL_REDIS_TOPIC", "动态线程池监听主题配置");
 
     private final String key;
-    private final String desc;
+    private final String description;
 
-    RegistryEnumVO(String key, String desc) {
+    RegistryEnumVO(String key, String description) {
         this.key = key;
-        this.desc = desc;
+        this.description = description;
     }
 
 }

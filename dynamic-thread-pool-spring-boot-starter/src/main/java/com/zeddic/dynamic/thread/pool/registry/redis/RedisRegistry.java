@@ -8,7 +8,9 @@ import org.redisson.api.RList;
 import org.redisson.api.RedissonClient;
 
 import java.time.Duration;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author: zeddic
@@ -17,16 +19,17 @@ import java.util.List;
  */
 public class RedisRegistry implements IRegistry {
 
-    private final  RedissonClient redissonClient;
+    private final RedissonClient redissonClient;
 
     public RedisRegistry(RedissonClient redissonClient) {
         this.redissonClient = redissonClient;
     }
+
     @Override
     public void reportThreadPoolList(List<ThreadPoolConfigEntity> entityList) {
         RList<ThreadPoolConfigEntity> list =
                 redissonClient.getList(RegistryEnumVO.THREAD_POOL_CONFIG_LIST_KEY.getKey());
-        list.delete();//防止重复添加
+        list.delete();
         list.addAll(entityList);
     }
 
@@ -35,6 +38,6 @@ public class RedisRegistry implements IRegistry {
         String cacheKey = RegistryEnumVO.THREAD_POOL_CONFIG_PARAMETER_LIST_KEY.getKey()
                 + "_" + entity.getAppName() + "_" + entity.getThreadPoolName();
         RBucket<ThreadPoolConfigEntity> bucket = redissonClient.getBucket(cacheKey);
-        bucket.set(entity , Duration.ofDays(30));
+        bucket.set(entity, Duration.ofDays(30));
     }
 }
